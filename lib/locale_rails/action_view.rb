@@ -23,7 +23,22 @@ module ActionView #:nodoc:
      end
 
      def find_template_with_locale_rails(original_template_path, format = nil, html_fallback = true)
-      return original_template_path if original_template_path.respond_to?(:render)
+      default = Locale.default.to_common
+
+      if original_template_path.respond_to?(:render)
+        # If we have a template object try to find a similar localized one first
+        Locale.candidates.each do |v|
+          file_name = original_template_path.template_path.gsub(/\/([^.]*)/, "/\\1_#{v}")
+          ret = _find_template_internal(file_name, format)
+          return ret if ret
+          if v == default
+            # When the user locale is the default locale break loop and return given template as is
+            break
+          end
+        end
+        # If we didn't find a localized template return given template as is
+        return original_template_path
+      end
 
       path = original_template_path.sub(/^\//, '')
       if m = path.match(/(.*)\.(\w+)$/)
@@ -32,7 +47,6 @@ module ActionView #:nodoc:
         template_file_name = path
       end
  
-      default = Locale.default.to_common
       Locale.candidates.each do |v|
         file_name = "#{template_file_name}_#{v}"
         file_name += ".#{template_file_extension}" if template_file_extension
