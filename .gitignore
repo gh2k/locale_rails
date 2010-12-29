@@ -1,6 +1,18 @@
-*.sqlite3
-pkg/*.gem
-test/log
-test/tmp
+# Gem build files
+/pkg/*.gem
+
+# Sample app
+/sample/db/*.sqlite3
+/sample/log/*
+/sample/tmp/*
+
+# Test app
+/test/db/*.sqlite3
+/test/log/*
+/test/tmp/*
+
+# IDE files
 .idea
+.generators
+*.iml
 
