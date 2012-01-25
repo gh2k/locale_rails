@@ -4,7 +4,7 @@ $:.unshift lib unless $:.include?(lib)
  
 Gem::Specification.new do |s|
   s.name        = "locale_rails"
-  s.version     = "2.0.6-pre"
+  s.version     = "2.0.6"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Masao Mutoh']
   s.email       = ["mutomasa@gmail.com"]
