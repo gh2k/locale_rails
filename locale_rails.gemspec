@@ -15,6 +15,6 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "locale_rails"
  
-  s.files        = Dir.glob("{sample,lib, test}/**/*") + %w(LICENSE README.rdoc COPYING ChangeLog)
+  s.files        = Dir.glob("{sample,lib, test}/**/*") + %w(README.rdoc COPYING ChangeLog)
   s.require_path = 'lib'
 end
